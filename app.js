@@ -55,4 +55,5 @@ app.get('/login', (req, res) => {
     res.render('login');
 });
 
-app.listen(3000, () => console.log('Listening 3000...'));
+const PORT = 3000;
+app.listen(PORT, () => console.log('Listening on port '+PORT));
