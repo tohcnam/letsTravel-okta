@@ -3,6 +3,9 @@ let app =  express();
 let mongoose = require('mongoose');
 let multer = require('multer');
 let cookieParser = require('cookie-parser');
+let dotenv = require('dotenv');
+dotenv.config();
+
 let postsRouter = require('./routes/posts');
 let callbackRequestsRouter = require('./routes/callback-requests');
 let emailsRouter = require('./routes/emails');
@@ -12,7 +15,7 @@ let auth = require('./controllers/auth');
 
 
 app.set('view engine', 'ejs');
-
+dotenv.config();
 mongoose.connect('mongodb://localhost/travels', { useUnifiedTopology: true, useNewUrlParser: true });
 
 app.use(express.json());
@@ -55,5 +58,5 @@ app.get('/login', (req, res) => {
     res.render('login');
 });
 
-const PORT = 3000;
-app.listen(PORT, () => console.log('Listening on port '+PORT));
+let port = process.env.PORT;
+app.listen(port, () => console.log('Listening on port '+port));
