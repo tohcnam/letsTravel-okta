@@ -1,0 +1,82 @@
+.mt-20{
+    margin-top: 20px;
+}
+footer{
+    height: 80px;
+    margin-top: 50px;
+}
+footer>.container, footer .row{
+    height: 100px;
+}
+.page-wrapper{
+    padding: 20px 15px;
+    margin: 50px auto;
+    box-shadow: 0 0 10px #ccc;
+    border-radius: 10px;
+}
+.page-wrapper h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.card-block{
+    padding: 15px;
+}
+.w100{
+    width: 100%;
+}
+.w60{
+    width: 60%;
+}
+.w30{
+    width: 30%;
+}
+.w20{
+    width: 20%;
+}
+.w10{
+    width: 10%;
+}
+.w5{
+    width: 5%;
+}
+.articles{
+    margin-top: 15px;
+}
+.article-inline{
+    padding-left: 10px;
+    flex-wrap: wrap;
+}
+.article-inline:nth-of-type(odd){
+    background: rgba(0, 0, 0, 0.05)
+}
+.sight-container{
+    margin-top: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    padding: 15px 15px; 
+}
+.sight-container h1 {
+    text-align: center;
+}
+.sight-container img {
+    width: 100%;
+}
+.sight-container .date {
+    font-weight: bold;
+}
+.map {
+    height: 400px;
+}
+.login-container {
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    margin-top: 50px;
+    padding: 20px 15px 30px;
+}
+.login-container h1{
+    text-align: center;
+    margin-bottom: 20px;
+}
+#myTabContent{
+    margin-top: 20px;
+}

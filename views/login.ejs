@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Let's Travel</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Contacts</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/admin">Admin Page</a>
+                      </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 call-me-form">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Phone number" aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Call Me</button>
+                </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-6 offset-3 login-container">
+                    <h1>Admin Page</h1>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <a class="nav-link active" id="sign-in-tab" data-toggle="tab" href="#sign-in" role="tab" aria-controls="sign-in" aria-selected="true">Sign In</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+                        </li>
+                      </ul>
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="sign-in" role="tabpanel" aria-labelledby="sign-in-tab">
+                            <form class="sign-in-form">
+                                <div class="form-group">
+                                  <label for="sign-in-email">Email address</label>
+                                  <input type="email" class="form-control" id="sign-in-email" aria-describedby="emailHelp" placeholder="Enter Email">
+                                </div>
+                                <div class="form-group">
+                                  <label for="sign-in-password">Password</label>
+                                  <input type="password" class="form-control" id="sign-in-password" placeholder="Enter password">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Sign In</button>
+                              </form>
+                        </div>
+                        <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                            <form class="register-form">
+                                <div class="form-group">
+                                  <label for="register-email">Email address</label>
+                                  <input type="email" class="form-control" id="register-email" aria-describedby="emailHelp" placeholder="Enter Email">
+                                </div>
+                                <div class="form-group">
+                                  <label for="register-password">Password</label>
+                                  <input type="password" class="form-control" id="register-password" placeholder="Enter password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="register-re-enter-password">Re-enter Password</label>
+                                    <input type="password" class="form-control" id="register-re-enter-password" placeholder="Re-enter password">
+                                  </div>
+                                <button type="submit" class="btn btn-primary">Register</button>
+                              </form>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/login.js"></script>
+</body>
+</html>
