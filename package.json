@@ -1,7 +1,7 @@
 {
   "name": "lets-travel",
   "version": "1.0.0",
-  "description": "Okta sign-in demonstration",
+  "description": "Okta sign-in demonstration for CIAM",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -9,7 +9,8 @@
     "build": "node app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Waldemar Rosenfeld <waldemar.rosenfeld@okta.com>",
+  "homepage": "https://github.com/tux-manchot/letsTravel",
   "license": "ISC",
   "dependencies": {
     "@okta/oidc-middleware": "^4.0.1",
