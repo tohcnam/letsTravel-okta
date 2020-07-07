@@ -2,9 +2,9 @@ let uniqid = require('uniqid');
 let Email = require('../models/emails').Email;
 let express = require('express');
 let router = express.Router();
-let authMiddleware = require('../middleware/auth');
+let auth = require('../controllers/auth');
 
-router.get('/', authMiddleware, async (req, res) => {
+router.get('/', auth.oidc.ensureAuthenticated(), async (req, res) => {
     res.send(await Email.find());
 });
 router.post('/', async (req, res) => {
@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
     await newEmail.save();
     res.send('Accepted');
 });
-router.delete('/:id', authMiddleware, async (req, res) => {
+router.delete('/:id', auth.oidc.ensureAuthenticated(), async (req, res) => {
     await Email.deleteOne({id: req.params.id});
     res.send('Deleted');
 });

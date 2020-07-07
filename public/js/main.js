@@ -36,3 +36,4 @@ callMeForm.addEventListener('submit', async function(e) {
         .then((res) => res.text())
         .then((data) => alert('We will call you back as soon as possible!'));
 });
+

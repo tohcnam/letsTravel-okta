@@ -2,7 +2,7 @@ let uniqid = require('uniqid');
 let Post = require('../models/post').Post;
 let express = require('express');
 let router = express.Router();
-let authMiddleware = require('../middleware/auth');
+let auth = require('../controllers/auth');
 
 router.get('/', async (req, res) => {
     let posts = await Post.find();
@@ -15,7 +15,7 @@ router.get('/:id', async (req, res) => {
     res.send(post);
 });
 
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/', auth.oidc.ensureAuthenticated(), async (req, res) => {
     let reqBody = req.body;
     let imgPath;
     if(reqBody.imageUrl){
@@ -37,13 +37,13 @@ router.post('/', authMiddleware, async (req, res) => {
     res.send('created');
 });
 
-router.delete('/:id', authMiddleware, async (req, res) =>{
+router.delete('/:id', auth.oidc.ensureAuthenticated(), async (req, res) =>{
     let id = req.params.id;
     await Post.deleteOne({id: id});
     res.send('Deleted!');
 });
 
-router.put('/:id', authMiddleware, async (req, res) => {
+router.put('/:id', auth.oidc.ensureAuthenticated(), async (req, res) => {
     let id = req.params.id;
     await Post.updateOne({id: id}, req.body);
     res.send('Updated');

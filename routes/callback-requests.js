@@ -2,9 +2,9 @@ let uniqid = require('uniqid');
 let CallbackRequest = require('../models/callback-requests').CallbackRequest;
 let express = require('express');
 let router = express.Router();
-let authMiddleware = require('../middleware/auth');
+let auth = require('../controllers/auth');
 
-router.get('/', authMiddleware, async (req, res) => {
+router.get('/', auth.oidc.ensureAuthenticated(), async (req, res) => {
     res.send(await CallbackRequest.find());
 });
 router.post('/', async (req, res) => {
@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
     await newRequest.save();
     res.send('Accepted');
 });
-router.delete('/:id', authMiddleware, async (req, res) => {
+router.delete('/:id', auth.oidc.ensureAuthenticated(), async (req, res) => {
     await CallbackRequest.deleteOne({id: req.params.id});
     res.send('Deleted');
 });

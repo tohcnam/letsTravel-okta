@@ -80,3 +80,9 @@ footer>.container, footer .row{
 #myTabContent{
     margin-top: 20px;
 }
+.navbar-login{
+    margin-right: 20px;
+}
+.navbar-brand{
+    height: 50px;
+}
