@@ -117,6 +117,7 @@ app.post('/user', auth.oidc.ensureAuthenticated(), async (req, res) => {
     let firstName = req.body.firstName;
     let lastName = req.body.lastName;
     let mfa = req.body.mfa;
+    let terms = req.body.terms;
     let userId = userinfo.sub;
 
     if(userId === req.body.userId){
@@ -131,7 +132,8 @@ app.post('/user', auth.oidc.ensureAuthenticated(), async (req, res) => {
                 "profile": {
                     "firstName": firstName,
                     "lastName": lastName,
-                    "mfa": mfa
+                    "mfa": mfa, 
+                    "terms": terms
                 }
             })
         })
