@@ -53,15 +53,17 @@ ADMINTOKEN=okta-api-token
 
 The app also assumes users have `MFA` (bool) and `terms` (String enum true and false) custom user attributes. Those need to be added from the Okta Developer Console by going to **Directory > Profile Editor**, then click the **Profile** button on the profile labeled **User**. Click **Add Attribute**, then give it a display name like `MFA` and a variable name of `mfa` (case sensitive). Click **Save and Add Another** to add another one with display name like `Terms and Services` and variable name `terms`, then click **Save**. The rest of the options can stay at the default. 
 
-### Custom groups and MFA rule
+#### Custom groups and MFA rule
 
 The app also assumes that the groups `MFAOptIn` and `travelAdmin` are created. Those need to be added from the Okta Developer Console by going to **Directory > Groups**, then click on **Add Group** button and create those two groups (case sensitive). Go to **Rules > Add Rule** and crate a rule. **IF**: with the Okta Expression Language `user.mfa=true` and **THEN** assign to `MFAOptIn`.  
 Everybody who is in the `travelAdmin` group will alter be able to access the `Admin` page in the application. 
 
-### Custom authorization settings (scopes and claims)
+#### Custom authorization settings (scopes and claims)
 
 The app also assumes that the authorization server has the custom scopes `travelSettings` and `travelAdmin`. Go to **Security > API > yourAuthServer > Scopes** and **Add Scope** the custom scopes `travelAdmin` and `travelSettings`.  
 To to **Claims** and **Add Claim** the custom claims `MFA`, `terms` and `travelGroups`. For the claim `MFA` and `terms` choose `ID Token`, value `user.mfa` and add to the scope `travelSettings`. For the claim `travelGroups` choose `ID token`, value type `Groups`, value `Starts with travel` and add to the scope `travelAdmin`. 
+
+### Run
 
 To run this app Docker and Docker-Compose is required. 
 
