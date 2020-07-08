@@ -25,8 +25,6 @@ You will need to create an application in Okta:
 * Change the **Base URI** to `http://localhost:3000` and the **Login redirect URI** to `http://localhost:3000/authorization-code/callback`, then click **Done**
 * Save your **client ID** and **client secret** for later
 
-- [] Add screenshots
-
 You will also need one API token:
 
 * Log in to your Okta account, then navigate to **API > Tokens** and click the **Create Token** button
