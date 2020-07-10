@@ -40,7 +40,6 @@ let imageStorage = multer.diskStorage({
 app.use(multer({storage: imageStorage}).single('imageFile'));
 
 app.use(express.static('public'));
-app.use(cookieParser());
 
 app.use('/posts', postsRouter);
 app.use('/callback-requests', callbackRequestsRouter);
