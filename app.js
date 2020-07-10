@@ -2,7 +2,6 @@ const express = require('express');
 const app =  express();
 const mongoose = require('mongoose');
 const multer = require('multer');
-const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 dotenv.config();
 const session = require('express-session');

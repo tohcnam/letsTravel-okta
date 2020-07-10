@@ -53,7 +53,7 @@ The app also assumes users have `MFA` (bool) and `terms` (String enum true and f
 
 #### Custom groups and MFA rule
 
-The app also assumes that the groups `MFAOptIn` and `travelAdmin` are created. Those need to be added from the Okta Developer Console by going to **Directory > Groups**, then click on **Add Group** button and create those two groups (case sensitive). Go to **Rules > Add Rule** and crate a rule. **IF**: with the Okta Expression Language `user.mfa=true` and **THEN** assign to `MFAOptIn`.  
+The app also assumes that the groups `MFAOptIn` and `travelAdmin` are created. Those need to be added from the Okta Developer Console by going to **Directory > Groups**, then click on **Add Group** button and create those two groups (case sensitive). Go to **Rules > Add Rule** and crate a rule. **IF**: with the Okta Expression Language `user.mfa==true` and **THEN** assign to `MFAOptIn`.  
 Everybody who is in the `travelAdmin` group will alter be able to access the `Admin` page in the application. 
 
 #### Custom authorization settings (scopes and claims)
