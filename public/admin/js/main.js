@@ -27,7 +27,7 @@ async function addPosts() {
         <article class="d-flex justify-content-between align-items-center article-inline">
         <div class="num w5">${i++}</div>
         <input class="id" type="hidden" value="${post.id}">
-        <div class="name w30">${post.title} Tower</div>
+        <div class="name w30">${post.title}</div>
         <div class="date w30">${date.toLocaleString()}</div>
         <div class="country w20">${post.country}</div>
         <div class="edit w10"><button class="btn btn-link btn-edit">Edit</button></div>
