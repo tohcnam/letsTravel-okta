@@ -15,9 +15,13 @@ document.addEventListener('DOMContentLoaded', async function(){
       rememberMe: true
     },
     authParams: {
-      pkce: true, 
+      // pkce: true,          // enable PKCE (works only with http://localhost or https)
       issuer: issuer.value
-    }
+    }, 
+    idps: [
+      {type: 'Facebook', id: '0oaoa5vs8z5mFfk6p0x6' }
+    ],
+    idpDisplay: 'SECONDARY'
   });
 
   signIn.renderEl({ el: '#app-container' }, (res) => {
