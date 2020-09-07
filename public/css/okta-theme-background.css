@@ -1007,6 +1007,6 @@
   }
 }
 body {
-  background-image: url('https://cdn.pixabay.com/photo/2016/01/09/18/28/old-1130743_1280.jpg');
+  background-image: url('../images/background.jpg');
   background-size: cover;
 }
