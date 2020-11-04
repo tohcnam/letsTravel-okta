@@ -22,9 +22,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/admin">Admin Page</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="/profile">Profile</a>
-                    </li>
+                    </li> -->
                     <%}%>
                 </ul>
                 <ul class="navbar-nav ml-auto navbar-login">
@@ -38,7 +38,12 @@
                     </li>
                     <%}else{%>
                     <li class="nav-item">
-                        <form method="get" action="/login">
+                        <form method="get" action="/signin/register">
+                            <button class="btn btn-outline-secondary register-btn mr-2" type="submit">Register</button>
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <form method="get" action="/signin">
                             <button class="btn btn-outline-secondary log-in-btn" type="submit">Log In</button>
                         </form>
                     </li>
@@ -51,4 +56,16 @@
             </div>
         </div>    
     </nav>
+    <%if(isLoggedIn && user!=null){%>
+    <div class="container">
+            <div class="alert alert-primary row welcome-text" role="alert">
+                <div class="col-11">Welcome back <strong><%=user.given_name%> <%=user.family_name%></strong>!</div>
+                <div class="col-1">
+                <form method="get" action="/profile">
+                    <button class="btn btn-outline-secondary profile-btn" type="submit">Profile</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%}%>
 </header>

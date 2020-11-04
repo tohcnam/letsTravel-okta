@@ -12,14 +12,20 @@ document.addEventListener('DOMContentLoaded', async function(){
     logo: '/images/logo.png',
     features: {
       registration: true,
-      rememberMe: true
+      rememberMe: true,
+      idpDiscovery: true,
+      passwordlessAuth: true,
+      router: true,
+      webauthn: true,
+      multiOptionalFactorEnroll: true
     },
     authParams: {
       // pkce: true,          // enable PKCE (works only with http://localhost or https)
       issuer: issuer.value
     }, 
     idps: [
-      {type: 'Facebook', id: '0oaoa5vs8z5mFfk6p0x6' }
+      {type: 'Facebook', id: '0oaoa5vs8z5mFfk6p0x6' }, 
+      {type: 'Microsoft', id: 'test'}
     ],
     idpDisplay: 'SECONDARY'
   });
@@ -27,7 +33,7 @@ document.addEventListener('DOMContentLoaded', async function(){
   signIn.renderEl({ el: '#app-container' }, (res) => {
     let form = document.createElement('form');
     form.method = 'POST';
-    form.action = '/login';
+    form.action = '/signin';
     document.body.append(form);
 
     let sessionTokenField = document.createElement('input');

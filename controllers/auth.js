@@ -6,6 +6,7 @@ dotenv.config();
 const oidcMiddlewareConfig = {
     routes: {
       login: {
+        path: '/signin',
         viewHandler: (req, res) => {
           const baseUrl = url.parse(process.env.ISSUER).protocol + '//' + url.parse(process.env.ISSUER).host;
           // Render your custom login page, you must create this view for your application and use the Okta Sign-In Widget
