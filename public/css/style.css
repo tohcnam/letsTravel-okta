@@ -86,3 +86,6 @@ footer>.container, footer .row{
 .navbar-brand{
     height: 50px;
 }
+.welcome-text{
+    margin-top: 20px;
+}

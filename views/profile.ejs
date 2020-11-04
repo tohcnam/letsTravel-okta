@@ -25,6 +25,9 @@
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                 <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
                                 <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                                <%if(process.env.IDNOW=="true"){%> 
+                                <a class="nav-link" id="v-pills-id-proofing-tab" data-toggle="pill" href="#v-pills-id-proofing" role="tab" aria-controls="v-pills-id-proofing" aria-selected="false">ID Proofing</a>
+                                <%}%>
                               </div>
                         </div>
                     </div>
@@ -112,6 +115,25 @@
                                         <button class="btn btn-primary" type="submit">Save</button>
                                     </form>
                                 </div>
+                                <%if(process.env.IDNOW=="true"){%> 
+                                <div class="tab-pane fade" id="v-pills-id-proofing" role="tabpanel" aria-labelledby="v-pills-id-proofing-tab">
+                                  <form class="verification-form">
+                                    <div class="form-group row">
+                                      <label for="inputVerificationStatus" class="col-sm-2 col-form-label">Verification Status</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" readonly class="form-control-plaintext" id="inputVerificationStatus" value="">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="inputVerificationID" class="col-sm-2 col-form-label">Verification ID</label>
+                                      <div class="col-sm-10">
+                                        <input type="text" readonly class="form-control-plaintext" id="inputVerificationID" value="">
+                                      </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mb-2 verificationSubmit">Start verification process</button>
+                                  </form>
+                                </div>
+                                <%}%>
                             </div>
                         </div>
                         </div>
