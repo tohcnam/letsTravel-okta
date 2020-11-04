@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
     const userinfo = req.userContext && req.userContext.userinfo;
     res.render('index', {
       isLoggedIn: !!userinfo,
-      userinfo: userinfo
+      user: userinfo
     });
 })
 
@@ -145,4 +145,4 @@ app.post('/user', auth.oidc.ensureAuthenticated(), async (req, res) => {
 });
 
 let port = process.env.PORT;
-app.listen(port, () => console.log('Listening on port '+port));
+app.listen(port, () => console.log('Listening on port '+ port));
