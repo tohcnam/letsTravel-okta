@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', async function(){
       responseMode: 'form_post', 
     },
     idps: [
-      {type: 'Facebook', id: '0oaoa5vs8z5mFfk6p0x6', formUri: redirectUri.value }, 
-      {type: 'Microsoft', id: '0oaswymldrsRKAC8x0x6', formUri: redirectUri.value}
+      {type: 'Facebook', id: '0oaoa5vs8z5mFfk6p0x6'}, 
+      {type: 'Microsoft', id: '0oaswymldrsRKAC8x0x6'}
     ],
     idpDisplay: 'SECONDARY'
   });
