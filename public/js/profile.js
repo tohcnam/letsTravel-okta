@@ -5,6 +5,12 @@ let inputFirstName = document.querySelector('#inputFirstname');
 let inputEmail = document.querySelector('#staticEmail');
 let submitSettings = document.querySelector('.update-settings-form');
 let userId = document.querySelector('#sub').value;
+let accessToken = document.querySelector('#access_token');
+let divAccessToken = document.querySelector('.accessTokenParsed');
+let idToken = document.querySelector('#id_token');
+let divIdToken = document.querySelector('.idTokenParsed');
+
+// for IDnow demo
 let startVerificationProcess = document.querySelector('.verification-form');
 let idNowID = '';
 let inputVerificationStatus = document.querySelector('#inputVerificationStatus');
@@ -21,6 +27,13 @@ document.addEventListener('DOMContentLoaded', async function(){
     inputLastName.value = user.profile.lastName;
     inputFirstName.value = user.profile.firstName;
     inputEmail.value = user.profile.login;
+
+    let parsedAccessToken = parseJwt(accessToken.value);
+    divAccessToken.textContent = JSON.stringify(parsedAccessToken, undefined, 2);
+    let parsedIdToken = parseJwt(idToken.value);
+    divIdToken.textContent = JSON.stringify(parsedIdToken, undefined, 2);
+
+    // for IDnow demo
     idNowID = user.profile.idnow_id;
     inputVerificationID.value = idNowID;
     let status = user.profile.idnow_status;
@@ -55,8 +68,19 @@ submitSettings.addEventListener('submit', async (e) => {
     .then((data) => window.history.go());
 });
 
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+};
+
+// for IDnow demo
 startVerificationProcess.addEventListener('submit', (e) => {
     e.preventDefault();
     let link = 'https://go.idnow.de/oktatestauto/identifications/' + idNowID + '/mobile';
     window.open(link, '_blank');
-})
+});

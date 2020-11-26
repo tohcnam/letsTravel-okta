@@ -1,6 +1,7 @@
 let csrfToken = document.querySelector('#csrfToken');
 let baseUrl = document.querySelector('#baseUrl');
-let issuer = document.querySelector('#issuer')
+let issuer = document.querySelector('#issuer');
+let redirectUri = document.querySelector('#redirectUri');
 let defaultThemeBtn = document.querySelector('.default-theme-btn');
 let backgroundThemeBtn = document.querySelector('.background-theme-btn');
 let darkThemeBtn = document.querySelector('.dark-theme-btn');
@@ -9,23 +10,30 @@ let minimalThemeBtn = document.querySelector('.minimal-theme-btn');
 document.addEventListener('DOMContentLoaded', async function(){
   const signIn = new OktaSignIn({
     baseUrl: baseUrl.value, 
+    relayState: redirectUri.value,
+    redirectUri: redirectUri.value,
     logo: '/images/logo.png',
     features: {
+      passwordless: true,
       registration: true,
       rememberMe: true,
-      idpDiscovery: true,
-      passwordlessAuth: true,
       router: true,
+      idpDiscovery: true,
       webauthn: true,
       multiOptionalFactorEnroll: true
     },
+    idpDiscovery:{
+        requestContext: redirectUri.value
+    },
     authParams: {
       // pkce: true,          // enable PKCE (works only with http://localhost or https)
-      issuer: issuer.value
-    }, 
+      issuer: issuer.value,
+      responseType: 'code',
+      responseMode: 'form_post', 
+    },
     idps: [
-      {type: 'Facebook', id: '0oaoa5vs8z5mFfk6p0x6' }, 
-      {type: 'Microsoft', id: 'test'}
+      {type: 'Facebook', id: '0oaoa5vs8z5mFfk6p0x6', formUri: redirectUri.value }, 
+      {type: 'Microsoft', id: '0oaswymldrsRKAC8x0x6', formUri: redirectUri.value}
     ],
     idpDisplay: 'SECONDARY'
   });

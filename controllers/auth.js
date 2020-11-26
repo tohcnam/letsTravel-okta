@@ -13,7 +13,8 @@ const oidcMiddlewareConfig = {
           res.render('custom-login', {
             csrfToken: req.csrfToken(),
             baseUrl: baseUrl, 
-            issuer: process.env.ISSUER
+            issuer: process.env.ISSUER,
+            redirect_uri: process.env.REDIRECT_URI
           });
         }
       }
