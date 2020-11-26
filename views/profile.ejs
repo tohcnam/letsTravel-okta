@@ -77,6 +77,36 @@
                                             </div>
                                           </div>
                                         </div>
+                                        <div class="card">
+                                          <div class="card-header" id="headingThree">
+                                            <h2 class="mb-0">
+                                              <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                Access Token Parsed
+                                              </button>
+                                            </h2>
+                                          </div>
+                                          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                              <input type="hidden" name="token" value="<%= tokens['access_token'] %>" id="access_token">
+                                              <pre class="accessTokenParsed"></pre>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="card">
+                                          <div class="card-header" id="headingFour">
+                                            <h2 class="mb-0">
+                                              <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                                ID Token Parsed
+                                              </button>
+                                            </h2>
+                                          </div>
+                                          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                                            <div class="card-body">
+                                              <input type="hidden" name="token" value="<%= tokens['id_token'] %>" id="id_token">
+                                              <pre class="idTokenParsed"></pre>
+                                            </div>
+                                          </div>
+                                        </div>
                                       </div>  
                                 </div>
                                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
