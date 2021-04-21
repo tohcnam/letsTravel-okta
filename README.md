@@ -43,6 +43,7 @@ REDIRECT_URI=http://localhost:3000/authorization-code/callback
 APPBASEURL=http://localhost:3000
 SCOPE="openid profile travelSettings travelAdmin"
 ADMINTOKEN=okta-api-token
+CUSTOM_REGISTRATION=false
 ```
 
 ### Requirements
