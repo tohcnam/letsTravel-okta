@@ -144,5 +144,72 @@ app.post('/user', auth.oidc.ensureAuthenticated(), async (req, res) => {
         res.send('denied');
 });
 
+app.get('/registration', async (req, res) => {
+    const userinfo = req.userContext && req.userContext.userinfo;
+    res.render('registration', {
+        user: userinfo,
+        isLoggedIn: !!userinfo
+    })
+});
+
+app.post('/registration', async (req, res) => {
+    let email = req.body.email;
+    let firstName = req.body.firstName;
+    let lastName = req.body.lastName;
+    let phone = req.body.phone;
+    let terms = req.body.terms;
+
+    let newUser = await fetch(baseUrl+'/api/v1/users?activate=true', {
+        method: 'POST', 
+        headers: {
+            "Accept": "application/json", 
+            "Content-Type": "application/json", 
+            "Authorization": 'SSWS ' + process.env.ADMINTOKEN
+        }, 
+        body: JSON.stringify({
+            "profile": {
+                "firstName": firstName,
+                "lastName": lastName,
+                "email": email, 
+                "login": email, 
+                "primaryPhone": phone,
+                "terms": terms.toString()
+            },
+            "groupIds": [
+              "00g1hkt8owx7t9jBd0x7"
+            ]
+        })
+    })
+    .then((resp) => resp.json())
+    .then((data) => data)
+    .catch(error => {
+        console.log('error', error)
+        res.status(500).send('Registration failed')
+    });
+
+    await fetch(baseUrl+'/api/v1/users/' + newUser.id + '/factors?activate=true', {
+        method: 'POST', 
+        headers: {
+            "Accept": "application/json", 
+            "Content-Type": "application/json", 
+            "Authorization": 'SSWS ' + process.env.ADMINTOKEN
+        }, 
+        body: JSON.stringify({
+            "factorType": "sms",
+            "provider": "OKTA",
+            "profile": {
+                "phoneNumber": phone
+            }
+        })
+    })
+    .then((resp) => resp.json())
+    .then((data) => data)
+    .catch(error => {
+        console.log('error', error)
+        res.status(500).send('Registration failed')
+    });
+    res.send('successful')
+});
+
 let port = process.env.PORT;
 app.listen(port, () => console.log('Listening on port '+ port));

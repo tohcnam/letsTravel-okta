@@ -108,6 +108,10 @@
                                           </div>
                                         </div>
                                       </div>  
+                                      <div class="card-block">
+                                        <a href="https://token.dev/#<%= tokens['access_token'] %>" target="_blank"><button type="button" class="btn btn-outline-success">Verify access token on token.dev</button></a>
+                                        <a href="https://token.dev/#<%= tokens['id_token'] %>" target="_blank"><button type="button" class="btn btn-outline-success">Verify id token on token.dev</button></a>
+                                      </div>
                                 </div>
                                 <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                                     <form class="update-settings-form">
@@ -146,6 +150,7 @@
                                     </form>
                                 </div>
                                 <%if(process.env.IDNOW=="true"){%> 
+                                <input type="hidden" name="idnow" id="idnow" value="true">
                                 <div class="tab-pane fade" id="v-pills-id-proofing" role="tabpanel" aria-labelledby="v-pills-id-proofing-tab">
                                   <form class="verification-form">
                                     <div class="form-group row">
@@ -166,13 +171,13 @@
                                 <%}%>
                             </div>
                         </div>
-                        </div>
+                      </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-    <script src="/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="/js/jquery-3.6.0.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/bootstrap4-toggle.min.js"></script>

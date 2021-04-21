@@ -29,24 +29,32 @@
                 </ul>
                 <ul class="navbar-nav ml-auto navbar-login">
                     <%if(isLoggedIn){%>
-                    <li class="nav-item">
-                    <form method="POST" action="/logout">
-                        <button id="logout-button" data-se="logout" class="btn btn-outline-secondary ">
-                        Logout
-                        </button>
-                    </form>
-                    </li>
+                        <li class="nav-item">
+                        <form method="POST" action="/logout">
+                            <button id="logout-button" data-se="logout" class="btn btn-outline-secondary ">
+                            Logout
+                            </button>
+                        </form>
+                        </li>
                     <%}else{%>
-                    <li class="nav-item">
-                        <form method="get" action="/signin/register">
-                            <button class="btn btn-outline-secondary register-btn mr-2" type="submit">Register</button>
-                        </form>
-                    </li>
-                    <li class="nav-item">
-                        <form method="get" action="/signin/login">
-                            <button class="btn btn-outline-secondary log-in-btn" type="submit">Log In</button>
-                        </form>
-                    </li>
+                        <%if(process.env.CUSTOM_REGISTRATION=="true"){%>
+                            <li class="nav-item">
+                                <form method="get" action="/registration">
+                                    <button class="btn btn-outline-secondary register-btn mr-2" type="submit">Register</button>
+                                </form>
+                            </li>
+                        <%}else{%>
+                            <li class="nav-item">
+                                <form method="get" action="/signin/register">
+                                    <button class="btn btn-outline-secondary register-btn mr-2" type="submit">Register</button>
+                                </form>
+                            </li>
+                        <%}%>
+                        <li class="nav-item">
+                            <form method="get" action="/signin/login">
+                                <button class="btn btn-outline-secondary log-in-btn" type="submit">Log In</button>
+                            </form>
+                        </li>
                     <%}%>
                 </ul>
                 <form class="form-inline my-2 my-lg-0 call-me-form">

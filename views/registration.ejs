@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+</head>
+<body>
+    <%- include ('header.ejs') %> 
+    <main>
+        <div class="container page-wrapper registration-wrapper">
+            <form class="registration-form">
+                <div class="mb-3">
+                <label for="inputEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="name@example.com" required>
+                </div>
+                <div class="mb-3">
+                <label for="inputFirstname" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="inputFirstname" placeholder="First Name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="inputLastname" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="inputLastname" placeholder="Last Name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="inputPhone" class="form-label">Phone</label>
+                    <input type="tel" class="form-control" id="inputPhone" pattern="^[0-9-+\s()]*$" placeholder="+49123456789">
+                </div>
+                <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="inputTerms">
+                <label class="form-check-label" for="inputTerms">Terms and Services</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+        <div class="container page-wrapper registration-success">
+            <div class="alert alert-success" role="alert">
+                Registration complete. Please check your mailbox to verify your email.
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/registration.js"></script>
+</body>
+</html>

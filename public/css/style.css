@@ -89,3 +89,6 @@ footer>.container, footer .row{
 .welcome-text{
     margin-top: 20px;
 }
+.registration-success{
+    display: none;
+}

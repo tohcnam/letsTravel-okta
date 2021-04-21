@@ -11,6 +11,7 @@ let idToken = document.querySelector('#id_token');
 let divIdToken = document.querySelector('.idTokenParsed');
 
 // for IDnow demo
+let idnow=false;
 let startVerificationProcess = document.querySelector('.verification-form');
 let idNowID = '';
 let inputVerificationStatus = document.querySelector('#inputVerificationStatus');
@@ -34,16 +35,26 @@ document.addEventListener('DOMContentLoaded', async function(){
     divIdToken.textContent = JSON.stringify(parsedIdToken, undefined, 2);
 
     // for IDnow demo
-    idNowID = user.profile.idnow_id;
-    inputVerificationID.value = idNowID;
-    let status = user.profile.idnow_status;
-    if(status=='SUCCESS' || status == "SUCCESS_DATA_CHANGED"){
-        inputVerificationStatus.value = status;
-        btnVerificationStart.style.display = "none";
-    } else {
-        inputVerificationStatus.value = "Unidentified";
-        btnVerificationStart.style.display = "block";
-    }
+    if(document.querySelector('#idnow') == 'true'){
+        idnow = true;
+        idNowID = user.profile.idnow_id;
+        inputVerificationID.value = idNowID;
+        let status = user.profile.idnow_status;
+        if(status=='SUCCESS' || status == "SUCCESS_DATA_CHANGED"){
+            inputVerificationStatus.value = status;
+            btnVerificationStart.style.display = "none";
+        } else {
+            inputVerificationStatus.value = "Unidentified";
+            btnVerificationStart.style.display = "block";
+        }
+        // for IDnow demo
+        startVerificationProcess.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let link = 'https://go.idnow.de/oktatestauto/identifications/' + idNowID + '/mobile';
+            window.open(link, '_blank');
+        });
+    } else
+        idnow = false;
 });
 
 submitSettings.addEventListener('submit', async (e) => {
@@ -77,10 +88,3 @@ function parseJwt (token) {
 
     return JSON.parse(jsonPayload);
 };
-
-// for IDnow demo
-startVerificationProcess.addEventListener('submit', (e) => {
-    e.preventDefault();
-    let link = 'https://go.idnow.de/oktatestauto/identifications/' + idNowID + '/mobile';
-    window.open(link, '_blank');
-});
