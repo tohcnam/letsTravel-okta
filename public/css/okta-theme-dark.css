@@ -1010,14 +1010,6 @@
   font-weight: bold;
   color: #E8C547;
 }
-#okta-sign-in .auth-org-logo {
-  display: block;
-  margin: 0 auto;
-  /* max-width: 200px; */
-  max-height: 40px;
-  content: url(https://customportal.website/okta/img/yellow-line.png);
-  background-repeat: no-repeat;
-}
 
 #okta-sign-in .auth-divider .auth-divider-text {
   background-color: transparent; 

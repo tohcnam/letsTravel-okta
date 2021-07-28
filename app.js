@@ -186,28 +186,29 @@ app.post('/registration', async (req, res) => {
         console.log('error', error)
         res.status(500).send('Registration failed')
     });
-
-    await fetch(baseUrl+'/api/v1/users/' + newUser.id + '/factors?activate=true', {
-        method: 'POST', 
-        headers: {
-            "Accept": "application/json", 
-            "Content-Type": "application/json", 
-            "Authorization": 'SSWS ' + process.env.ADMINTOKEN
-        }, 
-        body: JSON.stringify({
-            "factorType": "sms",
-            "provider": "OKTA",
-            "profile": {
-                "phoneNumber": phone
-            }
+    if(process.env.AUTOENROLL_SMS){
+        await fetch(baseUrl+'/api/v1/users/' + newUser.id + '/factors?activate=true', {
+            method: 'POST', 
+            headers: {
+                "Accept": "application/json", 
+                "Content-Type": "application/json", 
+                "Authorization": 'SSWS ' + process.env.ADMINTOKEN
+            }, 
+            body: JSON.stringify({
+                "factorType": "sms",
+                "provider": "OKTA",
+                "profile": {
+                    "phoneNumber": phone
+                }
+            })
         })
-    })
-    .then((resp) => resp.json())
-    .then((data) => data)
-    .catch(error => {
-        console.log('error', error)
-        res.status(500).send('Registration failed')
-    });
+        .then((resp) => resp.json())
+        .then((data) => data)
+        .catch(error => {
+            console.log('error', error)
+            res.status(500).send('Registration failed')
+        });
+    }
     res.send('successful')
 });
 
