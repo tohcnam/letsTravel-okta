@@ -150,6 +150,7 @@ app.post('/user', auth.oidc.ensureAuthenticated(), async (req, res) => {
 app.get('/registration', async (req, res) => {
     const userinfo = req.userContext && req.userContext.userinfo;
     res.render('registration', {
+        pageTitle: 'Registration',
         user: userinfo,
         isLoggedIn: !!userinfo
     })
