@@ -48,6 +48,7 @@ app.use('/emails', emailsRouter);
 app.get('/', (req, res) => {
     const userinfo = req.userContext && req.userContext.userinfo;
     res.render('index', {
+      pageTitle: 'Lets Travel Homepage',
       isLoggedIn: !!userinfo,
       user: userinfo
     });
@@ -59,7 +60,7 @@ app.get('/sight', async (req, res) => {
     let post = await Post.findOne({id: id});
     let date = new Date(post.date);
     res.render('sight', {
-        title: post.title, 
+        pageTitle: post.title, 
         imageURL: post.imageURL, 
         date: date.toLocaleString(),
         text: post.text,
@@ -74,6 +75,7 @@ app.get('/admin', auth.oidc.ensureAuthenticated(), (req, res) => {
 
     if(isLoggedIn && userinfo.travelGroups && userinfo.travelGroups[0] === 'travelAdmin'){
         res.render('admin', {
+            pageTitle: 'Admin Page',
             user: userinfo,
             isLoggedIn: isLoggedIn
         })
@@ -87,6 +89,7 @@ app.get('/profile', auth.oidc.ensureAuthenticated(), (req, res) => {
     const userinfo = req.userContext && req.userContext.userinfo;
     const tokens = req.userContext && req.userContext.tokens;
     res.render('profile', {
+        pageTitle: 'Profile Page',
         user: userinfo,
         isLoggedIn: !!userinfo,
         tokens: tokens

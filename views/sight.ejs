@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <%- include ('head.ejs') %>
     <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -20,9 +12,9 @@
     <%- include ('header.ejs') %> 
     <main>
         <div class="container sight-container">
-            <h1><%= title %></h1>
+            <h1><%= pageTitle %></h1>
             <hr>
-            <img src="<%= imageURL %>" alt="<%= title %>">
+            <img src="<%= imageURL %>" alt="<%= pageTitle %>">
             <hr>
             <p class="date"><%= date %></p>
             <hr>

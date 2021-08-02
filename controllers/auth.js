@@ -11,6 +11,7 @@ const oidcMiddlewareConfig = {
           const baseUrl = url.parse(process.env.ISSUER).protocol + '//' + url.parse(process.env.ISSUER).host;
           // Render your custom login page, you must create this view for your application and use the Okta Sign-In Widget
           res.render('custom-login', {
+            pageTitle: 'Login Page',
             csrfToken: req.csrfToken(),
             baseUrl: baseUrl, 
             issuer: process.env.ISSUER,
