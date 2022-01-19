@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 docker-compose build
-docker-compose up -d travelapp traveldb
+docker-compose up -d 
