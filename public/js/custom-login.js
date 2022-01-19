@@ -32,12 +32,8 @@ document.addEventListener('DOMContentLoaded', async function(){
       responseMode: 'form_post', 
     },
     idps: [
-      // for preview
-      {type: 'Facebook', id: '0oaoa5vs8z5mFfk6p0x6'}, 
-      {type: 'Microsoft', id: '0oaswymldrsRKAC8x0x6'}
-      // for prod
-      // {type: 'Facebook', id: '0oa5i4g62UaFu3pdB416'}, 
-      // {type: 'Microsoft', id: '0oa6g9u96yUhvG5Cw416'}
+      {type: 'Facebook', id: 'yourID'}, 
+      {type: 'Microsoft', id: 'yourID'}
     ],
     idpDisplay: 'SECONDARY'
   });

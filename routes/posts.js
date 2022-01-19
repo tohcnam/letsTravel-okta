@@ -5,13 +5,15 @@ let router = express.Router();
 let auth = require('../controllers/auth');
 
 router.get('/', async (req, res) => {
-    let posts = await Post.find();
+    let posts = await Post.find()
+                    .catch((error) => console.log(error))
     res.send(posts);
 });
 
 router.get('/:id', async (req, res) => {
     let id = req.params.id;
-    let post = await Post.findOne({id: id});
+    let post = await Post.findOne({id: id})
+    .catch((error) => console.log(error));
     res.send(post);
 });
 
@@ -39,13 +41,15 @@ router.post('/', auth.oidc.ensureAuthenticated(), async (req, res) => {
 
 router.delete('/:id', auth.oidc.ensureAuthenticated(), async (req, res) =>{
     let id = req.params.id;
-    await Post.deleteOne({id: id});
+    await Post.deleteOne({id: id})
+    .catch((error) => console.log(error));
     res.send('Deleted!');
 });
 
 router.put('/:id', auth.oidc.ensureAuthenticated(), async (req, res) => {
     let id = req.params.id;
-    await Post.updateOne({id: id}, req.body);
+    await Post.updateOne({id: id}, req.body)
+    .catch((error) => console.log(error));
     res.send('Updated');
 });
 
