@@ -4,7 +4,7 @@ This project is an example to demonstrate how to use the Okta NodeJS middelware 
 # Getting Started
 To install this example application, run the following commands:
 ```bash
-git clone https://github.com/tux-manchot/letsTravel.git
+git clone https://github.com/tohcnam/letsTravel.git
 cd letsTravel
 ```
 
@@ -41,7 +41,7 @@ CLIENT_ID=okta-application-client-id
 CLIENT_SECRET=okta-application-client-secret
 REDIRECT_URI=http://localhost:3000/authorization-code/callback
 APPBASEURL=http://localhost:3000
-SCOPE="openid profile travelSettings travelAdmin"
+SCOPE="openid profile demoScope offline_access"
 ADMINTOKEN=okta-api-token
 CUSTOM_REGISTRATION=false
 ```
@@ -54,13 +54,13 @@ The app also assumes users have `MFA` (bool) and `terms` (String enum true and f
 
 #### Custom groups and MFA rule
 
-The app also assumes that the groups `MFAOptIn` and `travelAdmin` are created. Those need to be added from the Okta Developer Console by going to **Directory > Groups**, then click on **Add Group** button and create those two groups (case sensitive). Go to **Rules > Add Rule** and crate a rule. **IF**: with the Okta Expression Language `user.mfa==true` and **THEN** assign to `MFAOptIn`.  
-Everybody who is in the `travelAdmin` group will alter be able to access the `Admin` page in the application. 
+The app also assumes that the groups `MFAOptIn` and `customAdmins` are created. Those need to be added from the Okta Developer Console by going to **Directory > Groups**, then click on **Add Group** button and create those two groups (case sensitive). Go to **Rules > Add Rule** and crate a rule. **IF**: with the Okta Expression Language `user.mfa==true` and **THEN** assign to `MFAOptIn`.  
+Everybody who is in the `customAdmins` group will alter be able to access the `Admin` page in the application. 
 
 #### Custom authorization settings (scopes and claims)
 
-The app also assumes that the authorization server has the custom scopes `travelSettings` and `travelAdmin`. Go to **Security > API > yourAuthServer > Scopes** and **Add Scope** the custom scopes `travelAdmin` and `travelSettings`.  
-To to **Claims** and **Add Claim** the custom claims `MFA`, `terms` and `travelGroups`. For the claim `MFA` and `terms` choose `ID Token`, value `user.mfa` and add to the scope `travelSettings`. For the claim `travelGroups` choose `ID token`, value type `Groups`, value `Starts with travel` and add to the scope `travelAdmin`. 
+The app also assumes that the authorization server has the custom scope `demoScope`. Go to **Security > API > yourAuthServer > Scopes** and **Add Scope** the custom scope `demoScope`.  
+To to **Claims** and **Add Claim** the custom claims `MFA`, `terms` and `groups`. For the claim `MFA` and `terms` choose `ID Token`, value `user.mfa` and add to the scope `demoScope`. For the claim `groups` choose `ID token`, value type `Groups`, filter `Matches regex` with value `.*` and add to the scope `demoScope`. 
 
 ### Run
 

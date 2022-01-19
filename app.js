@@ -73,7 +73,7 @@ app.get('/admin', auth.oidc.ensureAuthenticated(), (req, res) => {
     const userinfo = req.userContext && req.userContext.userinfo;
     let isLoggedIn = !!userinfo;
 
-    if(isLoggedIn && userinfo.travelGroups && userinfo.travelGroups[0] === 'travelAdmin'){
+    if(isLoggedIn && userinfo.groups && userinfo.groups.indexOf('customAdmins') > -1){
         res.render('admin', {
             pageTitle: 'Admin Page',
             user: userinfo,
