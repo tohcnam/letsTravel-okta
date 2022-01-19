@@ -1,20 +1,20 @@
 version: "2"
 
 services:
-  travelapp:
+  demoapp:
     build: .
-    image: letstravel
-    container_name: travelapp
+    image: demoapp
+    container_name: demoapp
     links: 
-      - traveldb
+      - demodb
     ports:
       - 3000:3000
     volumes: 
       - images:/app/public/images
-  traveldb:
+  demodb:
     build: ./db
-    image: traveldb
-    container_name: traveldb
+    image: demodb
+    container_name: demodb
     volumes: 
       - mongodb-data:/data/db:rw
 
