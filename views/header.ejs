@@ -37,6 +37,16 @@
                         </form>
                         </li>
                     <%}else{%>
+                        <% 
+                            if(process.CUSTOM_LOGIN){
+                                loginAction = "/signin/login"
+                                registrationAction = "/sigin/register"
+                            }else {
+                                loginAction = "/login"
+                                // TODO: fix link
+                                registrationAction = process.env.ISSUER_BASE + "/register"
+                            }    
+                        %>
                         <%if(process.env.CUSTOM_REGISTRATION=="true"){%>
                             <li class="nav-item">
                                 <form method="get" action="/registration">
@@ -45,13 +55,13 @@
                             </li>
                         <%}else{%>
                             <li class="nav-item">
-                                <form method="get" action="/signin/register">
+                                <form method="get" action="<%=registrationAction %>">
                                     <button class="btn btn-outline-secondary register-btn mr-2" type="submit">Register</button>
                                 </form>
                             </li>
                         <%}%>
                         <li class="nav-item">
-                            <form method="get" action="/signin/login">
+                            <form method="get" action="<%=loginAction %>">
                                 <button class="btn btn-outline-secondary log-in-btn" type="submit">Log In</button>
                             </form>
                         </li>

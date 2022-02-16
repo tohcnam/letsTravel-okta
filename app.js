@@ -17,7 +17,7 @@ const baseUrl = url.parse(process.env.ISSUER).protocol + '//' + url.parse(proces
 
 app.set('view engine', 'ejs');
 dotenv.config();
-let connectionString = 'mongodb://travel:Password123@traveldb:27017/travel?authSource=travel&w=1';
+let connectionString = 'mongodb://travel:Password123@demodb:27017/travel?authSource=travel&w=1';
 mongoose.connect(connectionString, { useUnifiedTopology: true, useNewUrlParser: true })
     .catch(error => console.log(error));
 

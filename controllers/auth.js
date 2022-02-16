@@ -3,24 +3,27 @@ const url = require('url');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const oidcMiddlewareConfig = {
-    routes: {
-      login: {
-        path: '/signin',
-        viewHandler: (req, res) => {
-          const baseUrl = url.parse(process.env.ISSUER).protocol + '//' + url.parse(process.env.ISSUER).host;
-          // Render your custom login page, you must create this view for your application and use the Okta Sign-In Widget
-          res.render('custom-login', {
-            pageTitle: 'Login Page',
-            csrfToken: req.csrfToken(),
-            baseUrl: baseUrl, 
-            issuer: process.env.ISSUER,
-            redirect_uri: process.env.REDIRECT_URI
-          });
+const oidcMiddlewareConfig = {}
+if(process.CUSTOM_LOGIN){
+  oidcMiddlewareConfig = {
+      routes: {
+        login: {
+          path: '/signin',
+          viewHandler: (req, res) => {
+            const baseUrl = url.parse(process.env.ISSUER).protocol + '//' + url.parse(process.env.ISSUER).host;
+            // Render your custom login page, you must create this view for your application and use the Okta Sign-In Widget
+            res.render('custom-login', {
+              pageTitle: 'Login Page',
+              csrfToken: req.csrfToken(),
+              baseUrl: baseUrl, 
+              issuer: process.env.ISSUER,
+              redirect_uri: process.env.REDIRECT_URI
+            });
+          }
         }
       }
-    }
-};
+  };
+}
 
 
 const oidc = new ExpressOIDC(Object.assign({

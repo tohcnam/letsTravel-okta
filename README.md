@@ -37,11 +37,13 @@ Now create a file called `.env` in the project root and add the following variab
 ```bash
 PORT=3000
 ISSUER=okta-authorization-server-issure-uri
+ISSUER_BASE=https://yourOktaTenant.okta.com
 CLIENT_ID=okta-application-client-id
 CLIENT_SECRET=okta-application-client-secret
+CUSTOM_LOGIN=false
 REDIRECT_URI=http://localhost:3000/authorization-code/callback
 APPBASEURL=http://localhost:3000
-SCOPE="openid profile demoScope offline_access"
+SCOPE="openid profile read:demo offline_access"
 ADMINTOKEN=okta-api-token
 CUSTOM_REGISTRATION=false
 ```
