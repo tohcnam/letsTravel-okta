@@ -1,4 +1,4 @@
-# letsTravel
+# letsTravel-okta
 This project is an example to demonstrate how to use the Okta NodeJS middelware for authentication with a custom login page and a user profile page. 
 
 # Getting Started
