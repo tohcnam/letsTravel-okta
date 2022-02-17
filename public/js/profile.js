@@ -1,5 +1,5 @@
-let inputMFA = $('#inputMFA');
 let inputTerms = $('#inputTerms');
+let inputAuth = $('#inputAuth');
 let inputLastName = document.querySelector('#inputLastname');
 let inputFirstName = document.querySelector('#inputFirstname');
 let inputEmail = document.querySelector('#staticEmail');
@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', async function(){
     .then((res) => res.json())
     .then((data) => data);
 
-    (user.profile.mfa) ? inputMFA.bootstrapToggle('on') : inputMFA.bootstrapToggle('off');
-    (user.profile.terms == "true") ? inputTerms.bootstrapToggle('on') : inputTerms.bootstrapToggle('off');
+    (user.profile.terms) ? inputTerms.bootstrapToggle('on') : inputTerms.bootstrapToggle('off');
+    (user.profile.auth) ? inputAuth.val(user.profile.auth) : inputAuth.val("password");
     inputLastName.value = user.profile.lastName;
     inputFirstName.value = user.profile.firstName;
     inputEmail.value = user.profile.login;
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async function(){
 submitSettings.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    let mfa = document.querySelector('#inputMFA').checked;
+    let authMethod = inputAuth.val();
     let terms = document.querySelector('#inputTerms').checked;
     await fetch('/user', {
         method: 'POST', 
@@ -71,12 +71,12 @@ submitSettings.addEventListener('submit', async (e) => {
             userId: userId,
             lastName: inputLastName.value,
             firstName: inputFirstName.value, 
-            mfa: mfa, 
+            auth: authMethod, 
             terms: terms
         })
     })
     .then((res) => res.text())
-    .then((data) => window.history.go());
+    .then((data) => window.open(document.location.protocol + "//" + document.location.host + "/login", "_self"));
 });
 
 function parseJwt (token) {

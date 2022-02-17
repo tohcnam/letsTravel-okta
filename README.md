@@ -4,8 +4,8 @@ This project is an example to demonstrate how to use the Okta NodeJS middelware 
 # Getting Started
 To install this example application, run the following commands:
 ```bash
-git clone https://github.com/tohcnam/letsTravel.git
-cd letsTravel
+git clone https://github.com/tohcnam/letsTravel-okta.git
+cd letsTravel-okta
 ```
 
 This will get a copy of the project install locally. You will need to set up some environment variables before the app will run properly.
@@ -52,17 +52,24 @@ CUSTOM_REGISTRATION=false
 
 #### Custom user attributes
 
-The app also assumes users have `MFA` (bool) and `terms` (String enum true and false) custom user attributes. Those need to be added from the Okta Developer Console by going to **Directory > Profile Editor**, then click the **Profile** button on the profile labeled **User**. Click **Add Attribute**, then give it a display name like `MFA` and a variable name of `mfa` (case sensitive). Click **Save and Add Another** to add another one with display name like `Terms and Services` and variable name `terms`, then click **Save**. The rest of the options can stay at the default. 
+The app also assumes users have `auth` (String with enum, see below) and `terms` (bool) custom user attributes. Those need to be added from the Okta Developer Console by going to **Directory > Profile Editor**, then click the **Profile** button on the profile labeled **User**. Click **Add Attribute**, then give it a display name like `Preferred Auth Method` and a variable name of `auth` (case sensitive). Add the enums `password`, `mfa`, `passwordless-email` and `passwordless-biometric`. Click **Save and Add Another** to add another one with display name like `Terms and Services` and variable name `terms`, then click **Save**. The rest of the options can stay at the default. 
 
 #### Custom groups and MFA rule
 
-The app also assumes that the groups `MFAOptIn` and `customAdmins` are created. Those need to be added from the Okta Developer Console by going to **Directory > Groups**, then click on **Add Group** button and create those two groups (case sensitive). Go to **Rules > Add Rule** and crate a rule. **IF**: with the Okta Expression Language `user.mfa==true` and **THEN** assign to `MFAOptIn`.  
+The app also assumes that the groups `MFA`, `Passwordless Email`, `Passwordless Biometric` and `customAdmins` are created. Those need to be added from the Okta Developer Console by going to **Directory > Groups**, then click on **Add Group** button and create those two groups (case sensitive). Go to **Rules > Add Rule** and crate the rules:
+
+**IF**: with the Okta Expression Language `user.auth equals "mfa"` and **THEN** assign to `MFA`.  
+
+**IF**: with the Okta Expression Language `user.auth equals "passwordless-email"` and **THEN** assign to `Passwordless Email`.  
+
+**IF**: with the Okta Expression Language `user.auth equals "passwordless-biometric"` and **THEN** assign to `Passwordless Biometric`.  
+
 Everybody who is in the `customAdmins` group will alter be able to access the `Admin` page in the application. 
 
 #### Custom authorization settings (scopes and claims)
 
-The app also assumes that the authorization server has the custom scope `demoScope`. Go to **Security > API > yourAuthServer > Scopes** and **Add Scope** the custom scope `demoScope`.  
-To to **Claims** and **Add Claim** the custom claims `MFA`, `terms` and `groups`. For the claim `MFA` and `terms` choose `ID Token`, value `user.mfa` and add to the scope `demoScope`. For the claim `groups` choose `ID token`, value type `Groups`, filter `Matches regex` with value `.*` and add to the scope `demoScope`. 
+The app also assumes that the authorization server has the custom scope `read:demo`. Go to **Security > API > yourAuthServer > Scopes** and **Add Scope** the custom scope `demoScope`.  
+To to **Claims** and **Add Claim** the custom claims `auth`, `terms` and `groups`. For the claim `auth` and `terms` choose `ID Token`, value `user.auth` or `user.terms` and add to the scope `demo:read`. For the claim `groups` choose `ID token`, value type `Groups`, filter `Matches regex` with value `.*` and add to the scope `demo:read`. 
 
 ### Run
 
