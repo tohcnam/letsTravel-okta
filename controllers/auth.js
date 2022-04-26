@@ -3,8 +3,9 @@ const url = require('url');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const oidcMiddlewareConfig = {}
-if(process.CUSTOM_LOGIN){
+let oidcMiddlewareConfig = {}
+
+if(process.env.CUSTOM_LOGIN === "true"){
   oidcMiddlewareConfig = {
       routes: {
         login: {
@@ -24,7 +25,6 @@ if(process.CUSTOM_LOGIN){
       }
   };
 }
-
 
 const oidc = new ExpressOIDC(Object.assign({
     issuer: process.env.ISSUER,

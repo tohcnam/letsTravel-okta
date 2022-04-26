@@ -38,7 +38,7 @@
                         </li>
                     <%}else{%>
                         <% 
-                            if(process.CUSTOM_LOGIN){
+                            if(process.env.CUSTOM_LOGIN === "true"){
                                 loginAction = "/signin/login"
                                 registrationAction = "/sigin/register"
                             }else {
