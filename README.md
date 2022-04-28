@@ -46,6 +46,7 @@ APPBASEURL=http://localhost:3000
 SCOPE="openid profile read:demo offline_access"
 ADMINTOKEN=okta-api-token
 CUSTOM_REGISTRATION=false
+SECUREAPP=EmbeddedUrlFromASecondApp
 ```
 
 ### Requirements
