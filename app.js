@@ -29,7 +29,8 @@ app.use(express.json());
 app.use(
   session({
     secret: "this should be secure",
-    resave: true,
+    // set to false to prevent race condition in session store
+    resave: false,
     saveUninitialized: false,
   })
 );
