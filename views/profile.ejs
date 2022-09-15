@@ -147,6 +147,9 @@
                                         </div>
                                         <button class="btn btn-primary" type="submit">Save</button>
                                     </form>
+                                    <form class="delete-account-form" action="/profile/delete" method="post">
+                                      <button class="btn btn-danger" type="submit">Delete Account</button>
+                                    </form>
                                 </div>
                                 <%if(process.env.IDNOW=="true"){%> 
                                 <input type="hidden" name="idnow" id="idnow" value="true">
